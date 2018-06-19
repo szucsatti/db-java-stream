@@ -16,6 +16,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.szucsatti.streams.JdbcStream;
+
 @Configuration
 @EnableJpaRepositories(basePackages = "com.szucsatti.ps.repo")
 @PropertySource("persistence-product.properties")
@@ -24,7 +26,8 @@ public class DataSourceConfig {
 
     @Autowired
     private Environment env;
-     
+    
+      
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -33,6 +36,11 @@ public class DataSourceConfig {
         dataSource.setUsername(env.getProperty("jdbc.user"));
         dataSource.setPassword(env.getProperty("jdbc.pass"));
         return dataSource;
+    }
+    
+    @Bean
+    public JdbcStream jsbcStream() {
+    	return new JdbcStream(dataSource());
     }
     
     @Bean

@@ -15,7 +15,7 @@ public class Product {
 		super();
 	}
 
-	public Product(long myfirst, String name) {
+	public Product(final long myfirst, final String name) {
 		super();
 		this.id = myfirst;
 		this.name = name;
@@ -26,7 +26,7 @@ public class Product {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(final long id) {
 		this.id = id;
 	}
 
@@ -34,8 +34,13 @@ public class Product {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + ", Name: " + this.name;
 	}
 
 }
